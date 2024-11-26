@@ -1,203 +1,147 @@
 package lista03.exercicio02;
 
-public class Proprietario {
-    private String Nome;
-    private String Cpf;
-    private String  Rg;
-    private String Telefone;
-    private String Rua;
-    private String Bairro;
-    private String Cidade;
-    private String Estado;
-    private String Cep;
-    private String Complemento;
+import java.util.Objects;
 
+public class Proprietario { //Atributos
+    private String nome;
+    private String cpf;
+    private String rg;
+    private Integer telefone;
+    private String rua;
+    private String bairro;
+    private String cidade;
+    private String estado;
+    private Long cep;
+    private String complemento;
 
-    public Proprietario(String Nome, String Cpf, String Rg, String Telefone, String Rua, String Bairro, String Cidade, String Estado, String Cep, String Complemento) {
-        this.Nome = Nome;
-        this.Cpf = Cpf;
-        this.Rg = Rg;
-        this.Telefone = Telefone;
-        this.Rua = Rua;
-        this.Bairro = Bairro;
-        this.Cidade = Cidade;
-        this.Estado = Estado;
-        this.Cep = Cep;
-        this.Complemento = Complemento;
-    }
+   /*
+       Getters e Setters
+   */
 
-    /**
-     * metodo para pegar o valor do atributo Nome
-     */
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
-    /**
-     * método para modificar o atributo Nome
-     * @param Nome digitado pelo usuario
-     */
-    public void setNome(String Nome){
-        this.Nome = Nome;
+    public void setNome(String nome) {
+        this.nome = (nome == null || nome.trim().isEmpty()) ? "Proprietario não identificado" : nome;
     }
 
-    /**
-     *método para acessar o cpf
-     * @return o próprio objeto CPF
-     */
     public String getCpf() {
-        return Cpf;
+        return cpf;
     }
 
-    /**
-     * método para modificar o CPF
-     * @param Cpf digitado pelo usuario recebendo um novo valor
-     */
-    public void setCpf(String Cpf){
-        if (validarCpf(Cpf)) this.Cpf = Cpf;
-        else this.Cpf = "0";
+    public void setCpf(String cpf) {
+        this.cpf = (Objects.nonNull(cpf) && eNumero(cpf) && validarCPF(cpf)) ? cpf : "0";
     }
 
-    /**
-     * método para pegar o RG
-     * @return retorna o RG
-     */
-    public String getRg(){
-        return Rg;
+    public String getRg() {
+        return rg;
     }
 
-    /**
-     * método usado para modificar o RG sendo obrigatório digitar algo
-     * @param Rg digitado pelo usuario
-     */
-    public void setRg(String Rg){
-        this.Rg = Rg;
+    public void setRg(String rg) {
+        this.rg = (Objects.nonNull(rg)) ? rg : "Não Informado.";
     }
 
-    /**
-     * método usado para pegar o telefone
-     * @return retorna o valor do telefone
-     */
-    public String getTelefone(){
-        return Telefone;
+    public Integer getTelefone() {
+        return telefone;
     }
 
-    /**
-     * método que modifica o telefone
-     * @param Telefone digitado pelo usuario
-     */
-    public void setTelefone(String Telefone){
-        this.Telefone = Telefone;
+    public void setTelefone(Integer telefone) {
+        this.telefone = telefone;
     }
 
-    /**
-     * @return método que retorna o valor da rua
-     */
-    public String getRua(){
-        return Rua;
+    public String getRua() {
+        return rua;
     }
 
-    /**
-     * mofica o valor da Rua
-     * @param Rua digitado pelo usuario
-     */
-    public void setRua(String Rua){
-        this.Rua = Rua;
+    public void setRua(String rua) {
+        this.rua = rua;
     }
 
-    /**
-     * @return retorna o valor do Bairro
-     */
-    public String getBairro(){
-        return Bairro;
+    public String getBairro() {
+        return bairro;
     }
 
-    /**
-     * modifica o valor do Bairro     * @param Bairro digitado pelo usuario
-     */
-    public void setBairro(String Bairro){
-        this.Bairro = Bairro;
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
     }
 
-    /**
-     * @return retorna o valor de Cidade
-     */
-    public String getCidade(){
-        return Cidade;
+    public String getCidade() {
+        return cidade;
     }
 
-    /**
-     * método que modifica o valor Cidade
-     * @param Cidade digitado pelo usuario
-     */
-    public void setCidade(String Cidade){
-        this.Cidade = Cidade;
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 
-    /**
-     * @return retorna o valor do Estado
-     */
-    public String getEstado(){
-        return Estado;
+    public String getEstado() {
+        return estado;
     }
 
-    /**
-     * método utilizado para modificar o Estado
-     * @param Estado digitado pelo usuario
-     */
-    public void setEstado(String Estado){
-        this.Estado = Estado;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
-    /**
-     * @return retorna o valor do Cep
-     */
-    public String getCep(){
-        return Cep;
+    public Long getCep() {
+        return cep;
     }
 
-    /**
-     * método para modificar o valor do Cep
-     * @param Cep digitado pelo usuario
-     */
-    public void setCep(String Cep){
-        this.Cep = Cep;
+    public void setCep(Long cep) {
+        this.cep = cep;
     }
 
-    /**
-     * @return o valor do complemento
-     */
-    public String getComplemento(){
-        return Complemento;
+    public String getComplemento() {
+        return complemento;
     }
 
-    public void setComplemento(String Complemento){
-        this.Complemento = Complemento;
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 
-    public void mostrarEstado(){
-        System.out.println("Nome: "+getNome());
-        System.out.println("Cpf: "+getCpf());
-        System.out.println("Rg: "+getRg());
-        System.out.println("Telefone: "+getTelefone());
-        System.out.println("Rua: "+getRua());
-        System.out.println("Bairro: "+getBairro());
-        System.out.println("Cidade: "+getCidade());
-        System.out.println("Estado: "+getEstado());
-        System.out.println("Cep: "+getCep());
-        System.out.println("Complemento: "+getComplemento());
+    //Construtores
+    public Proprietario(String nome, String rg, String cpf){
+        setNome(nome);
+        setRg(rg);
+        setCpf(cpf);
+      }
+
+    /* métodos */
+    private boolean eNumero(String str){
+        try {
+            Long.parseLong(str);
+            return true;
+        } catch (Exception e){
+            return false;
+        }
     }
 
-    /**
-     * método usado para veficar se o CPF é valido ou não
-     * @param Cpf digitado pelo usuario
-     * @return retorna true ou false
-     */
-    private boolean validarCpf(String Cpf){
-        return Cpf != null && Cpf.matches("\\d{11}");
-    }
+    private boolean validarCPF(String cpf){
+        if(cpf.length() < 12){
+            int soma = 0;
+            String primeiroDigito = cpf.substring(0, 9);
+            for (int i = 0; i < primeiroDigito.length(); i ++){
+                soma += Character.getNumericValue(primeiroDigito.charAt(i)) * (i+1);
+            }
+            soma = soma % 11;
+            if (soma == 10){
+                soma = 0;
+            }
+            if (soma == Character.getNumericValue(cpf.charAt(9))){
+                int soma1 = 0;
+                String segundoDigito = cpf.substring(0, 10);
+                for (int i = 0;i < segundoDigito.length(); i ++){
+                    soma1 += Character.getNumericValue(segundoDigito.charAt(i)) * i;
+                }
+                soma1 = soma1 % 11;
+                if (soma1 == 10){
+                    soma1 = 0;
+                }
+                if (soma1 == Character.getNumericValue(cpf.charAt(10))){
+                    return true;
+                }
+            }
 
-    private boolean contarDigitos(String Cpf){
-        return Cpf.;
+        }
+        return false;
     }
 }
