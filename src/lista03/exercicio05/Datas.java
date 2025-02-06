@@ -1,9 +1,5 @@
 package lista03.exercicio05;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 public class Datas {
     private Integer dia;
     private Integer mes;
@@ -16,25 +12,15 @@ public class Datas {
      * @param ano >= 1 && ano <= 2100, caso não for recebe 0
      */
     public Datas(Integer dia, Integer mes, Integer ano){
-        this.dia = (dia >= 1 && dia <= 30) ? dia : 0;
-        this.mes = (mes >= 1 && dia <= 30) ? mes : 0;
+        this.dia = (dia >= 1 && dia <= 31) ? dia : 0;
+        this.mes = (mes >= 1 && mes <= 12) ? mes : 0;
         this.ano = (ano >= 1 && ano <= 2100) ? ano : 0;
-    }
-
-    /**
-     * metodo que retorna a data atual do sistema operacional utilizando um metodo de java
-     */
-    public Datas(){
-        LocalDate dataSistema = LocalDate.now();
-        DateTimeFormatter formatar = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        System.out.println(dataSistema.format(formatar));
-
     }
 
     //metodos setters
     public void setAno(Integer dia) { this.dia = (dia >= 1 && dia <= 31) ? dia : 0;}
-    public void setDia(Integer mes) {this.mes = (mes >= 1 && dia <= 12) ? mes : 0;}
-    public void setMes(Integer ano) {this.ano = (ano >= 1900 && ano <= 2100) ? ano : 0;}
+    public void setDia(Integer mes) {this.mes = (mes >= 1 && mes <= 12) ? mes : 0;}
+    public void setMes(Integer ano) {this.ano = (ano > 1900 && ano < 2025) ? ano : 0;}
 
     //metodos getters
     public Integer getAno(){return ano;}
@@ -53,16 +39,22 @@ public class Datas {
      * @return +1 dia
      */
     public void avancar() {
-        if (dia < 31) {
-            this.dia += 1;
-        } else {
-            this.dia = 1;
-            if (mes < 12) {
-                this.mes += 1;
-            } else {
-                this.mes = 1;
-                this.ano += 1;
+
+        try {
+        if (dia <= 30){
+            dia += 1;
+        }
+        if (dia == 31){
+            dia = 1;
+            if (mes <= 11){
+                mes += 1;
+            }else if (mes == 12){
+                mes = 1;
+                ano += 1;
             }
+        }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }

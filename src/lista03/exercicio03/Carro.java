@@ -13,10 +13,10 @@ public class Carro {
     private int velocidadeAtual;
     private int numeroDePortas;
     private String tetoSolar;
-    private int numeroDeMarchas;
+    private Integer numeroDeMarchas;
     private String cambioAutomatico;
     private String volumeDeCombustivel;
-    private float autonomia;
+    private Double autonomia;
 
     //metodo getters
     public String getModelo() {
@@ -59,7 +59,7 @@ public class Carro {
         return tetoSolar;
     }
 
-    public int getNumeroDeMarchas() {
+    public Integer getNumeroDeMarchas() {
         return numeroDeMarchas;
     }
 
@@ -71,9 +71,10 @@ public class Carro {
         return volumeDeCombustivel;
     }
 
-    public float getAutonomia() {
+    public Double getAutonomia() {
         return autonomia;
     }
+
 
     //metodo setters
     public void setModelo(String modelo) {
@@ -116,7 +117,7 @@ public class Carro {
         this.tetoSolar = tetoSolar;
     }
 
-    public void setNumeroDeMarchas(int numeroDeMarchas) {
+    public void setNumeroDeMarchas(Integer numeroDeMarchas) {
         this.numeroDeMarchas = numeroDeMarchas;
     }
 
@@ -128,7 +129,7 @@ public class Carro {
         this.volumeDeCombustivel = (Objects.nonNull(volumeDeCombustivel) && !(volumeDeCombustivel.isEmpty())) ? volumeDeCombustivel : "Volume de combustivel nao identificado!";
     }
 
-    public void setAutonomia(float autonomia) {
+    public void setAutonomia(Double autonomia) {
         this.autonomia = autonomia;
     }
 
@@ -138,7 +139,7 @@ public class Carro {
      * @param numeroDeMarchas     String
      * @param volumeDeCombustivel String
      */
-    public Carro(float autonomia, int numeroDeMarchas, String volumeDeCombustivel) {
+    public Carro(Double autonomia, Integer numeroDeMarchas, String volumeDeCombustivel) {
         this.autonomia = autonomia;
         this.numeroDeMarchas = numeroDeMarchas;
         this.volumeDeCombustivel = volumeDeCombustivel;
@@ -150,9 +151,9 @@ public class Carro {
      * @param numeroDeMarchas variavel String
      * @return true para não float e false para float
      */
-    private boolean eFloat(String numeroDeMarchas) {
+    private boolean eDouble(String numeroDeMarchas) {
         try {
-            Float.parseFloat(numeroDeMarchas);
+            Double.parseDouble(numeroDeMarchas);
             return false;
         } catch (NumberFormatException e) {
             return true;
@@ -182,17 +183,16 @@ public class Carro {
      * @param numeroAtualMarchas esse é o valor que  o metodo devera receber para especificar o numero atual de marchas que o carro esta
      * @return +1 para cada troca
      */
-    public int trocarMarcha(int numeroAtualMarchas) {
-
-        return numeroAtualMarchas = (numeroAtualMarchas < numeroDeMarchas && numeroAtualMarchas > 0) ? numeroAtualMarchas + 1 : numeroDeMarchas;
+    public int trocarMarcha(int marchaAtual) {
+    return (numeroDeMarchas >= marchaAtual && marchaAtual > -1) ? marchaAtual + 1 : -1;
     }
 
     /**
      * reduzir a marcha
      * @return 1 em 1 para a redução da marcha até atingir o máximo de marchas permitidas até atingir -1 que será ré
      */
-    public int reduzMarcha(int numeroAtualMarchas){
-        return numeroAtualMarchas = (numeroDeMarchas >= numeroAtualMarchas && numeroAtualMarchas > -1) ? numeroAtualMarchas - 1 : -1;
+    public int reduzMarcha(int marchaAtual){
+        return  (numeroDeMarchas >= marchaAtual && marchaAtual > -1) ? marchaAtual - 1 : -1;
     }
 
     /**
@@ -200,7 +200,7 @@ public class Carro {
      * @param km distancia que o usuario irá percorrer
      * @return a quantidade de litros que será necessário para percorrer os KM espicificado
      */
-    public float quantCombustivel(float km){
+    public Double quantCombustivel(Double km){
         return km / autonomia;
     }
 
@@ -223,4 +223,5 @@ public class Carro {
         System.out.println("Volume de Combustivel em LITROS: "+getVolumeDeCombustivel());
         System.out.println("Autonomia em KM/L: "+getAutonomia());
     }
+
 }

@@ -1,5 +1,8 @@
 package lista03.exercicio02;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.chrono.ChronoLocalDate;
 import java.util.Objects;
 
 public class Proprietario { //Atributos
@@ -105,7 +108,11 @@ public class Proprietario { //Atributos
         setCpf(cpf);
       }
 
-    /* métodos */
+    /**
+     * metodo que verifica se é numero ou não
+     * @param str String para ser verificado
+     * @retur verdadeiro se e numero, falso se não é, é tratado como uma exceção
+     */
     private boolean eNumero(String str){
         try {
             Long.parseLong(str);
@@ -115,6 +122,11 @@ public class Proprietario { //Atributos
         }
     }
 
+    /**
+     * método que valida se o CPF é verdadeiro ou não com calculo padronizado
+     * @param cpf que o usuario inseriu para verificar
+     * @return retorna verdadeiro se for valido, falso para não válido
+     */
     private boolean validarCPF(String cpf){
         if(cpf.length() < 12){
             int soma = 0;
@@ -140,8 +152,36 @@ public class Proprietario { //Atributos
                     return true;
                 }
             }
-
-        }
+         }
         return false;
+    }
+
+    /**
+     * metodo que retorna o estado da instancia, retornando os valores de seus métodos
+     * @return valores de seus métodos em formato de String
+     */
+    @Override
+    public String toString(){
+        return "Proprietario: "+
+                "\nNome: "+getNome()+
+                "\nCPF: "+getCpf()+
+                "\nRG: "+getRg()+
+                "\nBairro: "+getBairro()+
+                "\nCidade: "+getCidade()+
+                "\nEstado: "+getEstado()+
+                "\nCEP: "+getCep()+
+                "\nComplemento: "+getComplemento();
+    }
+
+    /**
+     * calcula a idade atual do usuario recebendo sua data de nascimento no formato AAAA-MM-DD
+     * @param dataDeNascimento formato AAAA-MM-DD
+     * @return retorna a idade do usuario utilizando o LocalDate e Period
+     */
+    public void idadeAtual(String dataDeNascimento){
+        LocalDate dataUsuario = LocalDate.parse(dataDeNascimento);
+        LocalDate hoje = LocalDate.now();
+        Period idade = Period.between(dataUsuario, hoje);
+        System.out.println(idade.getYears());
     }
 }

@@ -4,12 +4,17 @@ import java.util.Scanner;
 
 public class Aplicativo {
     public static void main(String[] args) {
-        String [][] gradeJogo1 = new String[3][3];
+        JogoDaVelha jogo = new JogoDaVelha();
+        jogo.exibirGrade();
 
-        JogoDaVelha jogo1 = new JogoDaVelha(gradeJogo1);
-
-        jogo1.jogar(gradeJogo1, "x", "o");
-
-
+        jogo.verificarJogada("1", "x");
+        jogo.verificarJogada("2", "x");
+        jogo.verificarJogada("3", "x");
+        jogo.verificarJogada("4", "x");
+        jogo.verificarJogada("5", "x");
+        jogo.verificarJogada("6", "x");
+        jogo.verificarJogada("7", "x");
+        jogo.verificarJogada("8", "x");
+        jogo.verificarJogada("9", "x");
     }
 }

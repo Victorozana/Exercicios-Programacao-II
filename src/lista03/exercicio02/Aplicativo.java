@@ -1,15 +1,16 @@
 package lista03.exercicio02;
 
+import lista04.exercicio1.Produto;
+
+import java.time.Period;
+
 public class Aplicativo {
     public static void main(String[] args) {
-        Proprietario proprietario1 = new Proprietario("VICTOR OZANA DA SILVA OLIVEIRA", null, "71121157106");
+        Proprietario proprietario1 = new Proprietario("Eduarda", "7033308", "71169519113");
 
-        System.out.println("O CPF E: " +proprietario1.getCpf());
-        System.out.println("nome é: "+proprietario1.getNome());
+        System.out.println(proprietario1.toString());
 
-        proprietario1.setComplemento("QD 125 LT 05");
-        System.out.println(proprietario1.getComplemento());
+        proprietario1.idadeAtual("2005-08-30");
 
-        System.out.println("rg: "+proprietario1.getRg());
      }
 }
