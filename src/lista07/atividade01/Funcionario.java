@@ -1,5 +1,7 @@
 package lista07.atividade01;
 
+import java.util.Objects;
+
 public abstract class Funcionario {
     private String nome;
     private String cpf;
@@ -7,7 +9,7 @@ public abstract class Funcionario {
 
     public Funcionario(String nome, String cpf, Double salarioBase) {
         this.nome = nome;
-        this.cpf = cpf;
+        this.cpf = (validarCpf(cpf)) ? cpf : null;
         this.salarioBase = salarioBase;
     }
 
@@ -32,16 +34,24 @@ public abstract class Funcionario {
     }
 
     private boolean validarCpf(String cpf){
-        if (cpf.length() != 11){
-            return false;
+        if (cpf.length() == 11){
+            Integer d1 = calcularDigito(cpf.substring(0,9), 0, 0);
+            Integer d2 = calcularDigito(cpf.substring(1,10), 0, 0);
+            boolean valido = String.valueOf(cpf.charAt(9)).equals(d1.toString()) &&
+                    String.valueOf(cpf.charAt(10)).equals(d2.toString());
+            return valido;
         }
-        String cpf1 = cpf.substring(0, 9);
-        int cont = 10;
-        int soma = 0;
-        for (int i = 0; i < cont; i++){
-            soma = cpf1.charAt(i) * cont;
-            cont --;
-        }
-        return true;
+        return false;
     }
+
+    private Integer calcularDigito(String cpf, Integer soma, Integer posicao){
+        if (posicao == 9){
+            int digito = soma % 11;
+            return (digito > 9) ? 0 : digito;
+        }
+        soma += Integer.parseInt(String.valueOf(cpf.charAt(posicao))) * (posicao + 1);
+        return calcularDigito(cpf, soma, posicao + 1);
+    }
+
+
 }

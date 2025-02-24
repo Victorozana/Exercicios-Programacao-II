@@ -6,7 +6,7 @@ import java.time.Period;
 
 public class Aplicativo {
     public static void main(String[] args) {
-        Proprietario proprietario1 = new Proprietario("Eduarda", "7033308", "71169519113");
+        Proprietario proprietario1 = new Proprietario("Eduarda", "7033308", "06891354161");
 
         System.out.println(proprietario1.toString());
 
